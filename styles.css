@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap');
+
+/* --- Estilos Generales --- */
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #f8f0e3;
+    color: #444;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.main-container {
+    max-width: 1000px;
+    width: 100%;
+    background-color: transparent;
+    padding: 0;
+}
+
+/* --- Encabezado de la Página --- */
+.page-header {
+    padding: 20px 0 40px 0;
+    position: relative;
+    min-height: 50px;
+}
+
+.header-content {
+    /* CAMBIO 1: Centra el contenido del encabezado */
+    display: flex;
+    justify-content: center; /* Se cambia a 'center' para que el grupo Remy + Título se centre */
+    align-items: center;
+    gap: 50px;
+    max-width: 1000px;
+    margin: 0 auto;
+    z-index: 2;
+    position: relative;
+}
+
+.header-content > div {
+    /* CAMBIO 2: Elimina el 'flex-grow' para que ocupe solo el espacio necesario */
+    text-align: center;
+    /* flex-grow: 1; -> Comentado para que no se expanda y empuje a los demás elementos */
+}
+
+.remy-image {
+  /* Agrega estas propiedades */
+    position: absolute;
+    left: -120px; /* Ajusta este valor para moverlo más a la derecha */
+    top: 50%; /* Puedes usar 'top' o 'bottom' para el desplazamiento vertical */
+    transform: translateY(-50%); /* O usa 'transform' para centrarlo verticalmente */
+
+    /* Mantiene el tamaño */
+    max-width: 120px;
+    height: auto;
+}
+.luigilli-image {
+    /* CAMBIO 3: Ajusta el 'right' para que no invada tanto el centro */
+    position: absolute;
+    right: -250px; /* Se ajusta para que se vea en el borde sin invadir mucho el centro */
+    top: 50%;
+    transform: translateY(-20%);
+    width: 400px;
+    max-width: none;
+    height: auto;
+    z-index: -1;
+}
+
+.page-header h1 {
+    font-family: 'Playfair Display', serif;
+    color: #8b4513;
+    font-size: 3.5em;
+    margin-bottom: 10px;
+}
+
+.intro-text {
+    font-size: 1.2em;
+    max-width: 700px;
+    margin: 0 auto 30px auto;
+    line-height: 1.6;
+}
+
+/* --- Contenedor de las Recetas (la cuadrícula de 2x2) --- */
+.recetas-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+/* --- Estilos Generales para las Tarjetas --- */
+.receta-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.receta-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.receta-card a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* --- Estilos para el Carrusel de Imágenes --- */
+.image-slider {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.image-slider img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    animation: imageFade 12s infinite;
+}
+
+/* --- Estilos para el Contenido de Texto de la Tarjeta --- */
+.card-content {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 0 0 10px 10px;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-content h2 {
+    font-family: 'Playfair Display', serif;
+    color: #8b4513;
+    font-size: 2em;
+    margin: 0 0 10px 0;
+}
+
+.card-content p {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #444;
+}
+
+/* --- Configuraciones Específicas de Animación para Cada Carrusel --- */
+/* Carne (2 imágenes, 4s por imagen) */
+.carne-slider-card .image-slider img { animation: imageFade 8s infinite; }
+.carne-slider-card .image-slider img:nth-child(1) { animation-delay: 0s; }
+.carne-slider-card .image-slider img:nth-child(2) { animation-delay: 4s; }
+
+/* Pollo (3 imágenes, 4s por imagen) */
+.pollo-slider-card .image-slider img { animation: imageFade 12s infinite; }
+.pollo-slider-card .image-slider img:nth-child(1) { animation-delay: 0s; }
+.pollo-slider-card .image-slider img:nth-child(2) { animation-delay: 4s; }
+.pollo-slider-card .image-slider img:nth-child(3) { animation-delay: 8s; }
+
+/* Pescados (2 imágenes, 4s por imagen) */
+.pescado-slider-card .image-slider img { animation: imageFade 8s infinite; }
+.pescado-slider-card .image-slider img:nth-child(1) { animation-delay: 0s; }
+.pescado-slider-card .image-slider img:nth-child(2) { animation-delay: 4s; }
+
+/* Otras Recetas (2 imágenes, 4s por imagen) */
+.otros-slider-card .image-slider img { animation: imageFade 8s infinite; }
+.otros-slider-card .image-slider img:nth-child(1) { animation-delay: 0s; }
+.otros-slider-card .image-slider img:nth-child(2) { animation-delay: 4s; }
+
+/* --- Keyframes de la Animación para el Carrusel --- */
+@keyframes imageFade {
+    0% { opacity: 0; }
+    8% { opacity: 1; }
+    25% { opacity: 1; }
+    33% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+/* --- Pie de Página (Ego) --- */
+.page-footer {
+    padding: 40px 0 20px 0;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* --- Estilos para la frase del Ego --- */
+.page-footer blockquote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.8em;
+    color: #5d3419;
+    margin: 0;
+    padding: 0;
+    max-width: 500px;
+    text-align: right;
+    margin-right: 10px;
+    margin-left: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.page-footer blockquote p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.page-footer blockquote:before,
+.page-footer blockquote:after {
+    display: none;
+}
+
+.ego-image {
+    max-width: 200px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    margin: 20px 0;
+    margin-left: -15px;
+    margin-right: 0;
+    position: relative;
+    z-index: 2;
+}
+
+/* Media Queries para que se vea bien en móviles */
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 2.5em;
+    }
+    .intro-text {
+        font-size: 1em;
+    }
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .remy-image,
+    .luigilli-image {
+        max-width: 150px;
+    }
+    .recetas-container {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+        padding: 0 10px;
+    }
+    .image-slider {
+        height: 150px;
+    }
+    .page-footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    .page-footer blockquote {
+        font-size: 1.4em;
+        text-align: center;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .ego-image {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
